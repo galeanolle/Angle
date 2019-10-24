@@ -1,6 +1,6 @@
 <?php
 
-$t = new Time(12,15);
+$t = new Time(15,00);
 
 echo "shortAngle: ".$t->shortAngle()."<br>";
 
@@ -41,12 +41,9 @@ class Time {
         if($this->_hour==12)$this->_hour = 0;
         $this->_hour_degree = $this->_hour * 30;
         $this->_minute_degree = $this->_minute * 6;
-        if($this->_minute>72 && $this->_minute<=144) $this->_hour_degree += 6;
-        if($this->_minute>144 && $this->_minute<=216) $this->_hour_degree += 12;
-        if($this->_minute>216 && $this->_minute<=288) $this->_hour_degree += 18;
-        if($this->_minute>288 && $this->_minute<=360) $this->_hour_degree += 24;
+        if($this->_minute_degree>0)
+            $this->_hour_degree += 30/(360/$this->_minute_degree);
     }
 }
-
 
 ?>
